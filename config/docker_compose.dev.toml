@@ -58,7 +58,7 @@ master_enc_key = "73ad7bbbbc640c845a150f67d058b279849370cd2c1f3c67c4dd6c869213e1
 password_validity_in_days = 90
 two_factor_auth_expiry_in_secs = 300
 totp_issuer_name = "Hyperswitch"
-base_url = "https://dashboard.dfl24.com"
+base_url = "https://dashboard-dev.dfl24.com"
 force_two_factor_auth = false
 force_cookies = false
 
@@ -107,12 +107,12 @@ unresponsive_check_interval = 2   # The frequency at which the client checks for
 max_feed_count = 200
 
 [key_manager]
-url = "http://localhost:5000"
+url = "https://key-manager-dev.dfl24.com"
 use_legacy_key_store_decryption = false
 
 [cors]
 max_age = 30
-origins = "https://api.dfl24.com,https://dashboard.dfl24.com,https://pay.dfl24.com"
+origins = "https://api-dev.dfl24.com,https://dashboard-dev.dfl24.com,https://pay-dev.dfl24.com"
 allowed_methods = "GET,POST,PUT,DELETE"
 wildcard_origin = false
 
@@ -166,7 +166,7 @@ datatrans.secondary_base_url = "https://pay.sandbox.datatrans.com/"
 deutschebank.base_url = "https://testmerch.directpos.de/rest-api"
 digitalvirgo.base_url = "https://dcb-integration-service-sandbox-external.staging.digitalvirgo.pl"
 dlocal.base_url = "https://sandbox.dlocal.com/"
-dummyconnector.base_url = "http://localhost:8080/dummy-connector"
+dummyconnector.base_url = "https://api-dev.dfl24.com/dummy-connector"
 dwolla.base_url = "https://api-sandbox.dwolla.com"
 ebanx.base_url = "https://sandbox.ebanxpay.com/"
 elavon.base_url = "https://api.demo.convergepay.com/VirtualMerchantDemo/"
@@ -190,7 +190,7 @@ gpayments.base_url = "https://{{merchant_endpoint_prefix}}-test.api.as1.gpayment
 helcim.base_url = "https://api.helcim.com/"
 hipay.base_url = "https://stage-secure-gateway.hipay-tpp.com/rest/"
 hyperpg.base_url = "https://sandbox.hyperpg.in"
-hyperswitch_vault.base_url = "http://localhost:8080"
+hyperswitch_vault.base_url = "https://api-dev.dfl24.com"
 hyperwallet.base_url = "https://uat-api.paylution.com"
 hipay.secondary_base_url = "https://stage-secure2-vault.hipay-tpp.com/rest/"
 hipay.third_base_url = "https://stage-api-gateway.hipay.com/"
@@ -199,7 +199,7 @@ imerchantsolutions.base_url = "https://imerchantsolutions.com/api"
 inespay.base_url = "https://apiflow.inespay.com/san/v21"
 itaubank.base_url = "https://sandbox.devportal.itau.com.br/"
 jpmorgan.base_url = "https://api-mock.payments.jpmorgan.com/api/v2"
-juspaythreedsserver.base_url = "http://localhost:8000"
+juspaythreedsserver.base_url = "https://3ds-dev.dfl24.com"
 katapult.base_url = "https://sandbox.katapult.com/api/v3"
 jpmorgan.secondary_base_url="https://id.payments.jpmorgan.com"
 klarna.base_url = "https://api{{klarna_region}}.playground.klarna.com/"
@@ -272,7 +272,7 @@ trustpay.base_url = "https://test-tpgw.trustpay.eu/"
 trustpayments.base_url = "https://webservices.securetrading.net/"
 trustpay.base_url_bank_redirects = "https://aapi.trustpay.eu/"
 tsys.base_url = "https://stagegw.transnox.com/"
-unified_authentication_service.base_url = "http://localhost:8000"
+unified_authentication_service.base_url = "https://auth-dev.dfl24.com"
 vgs.base_url = "https://{{vault_id}}.sandbox.vault-api.verygoodvault.com/"
 vgs.secondary_base_url = "https://auth.verygoodsecurity.com/"
 volt.base_url = "https://gateway.sandbox.volt.io"
@@ -1144,7 +1144,7 @@ redis_lock_expiry_seconds = 180             # 3 * 60 seconds
 merchant_id_auth_enabled = false
 
 [events.kafka]
-brokers = ["localhost:9092"]
+brokers = ["kafka0:29092"]
 fraud_check_analytics_topic = "hyperswitch-fraud-check-events"
 intent_analytics_topic = "hyperswitch-payment-intent-events"
 attempt_analytics_topic = "hyperswitch-payment-attempt-events"
@@ -1167,7 +1167,7 @@ forex_enabled = false # Enable or disable forex conversion for analytics
 [analytics.clickhouse]
 username = "default"
 # password = ""
-host = "http://localhost:8123"
+host = "http://clickhouse:8123"
 database_name = "default"
 
 [analytics.sqlx]
@@ -1231,21 +1231,21 @@ enabled = false
 global_tenant = { tenant_id = "global", schema = "public", redis_key_prefix = "", clickhouse_database = "default" }
 
 [multitenancy.tenants.public]
-base_url = "http://localhost:8080"
+base_url = "https://api-dev.dfl24.com"
 schema = "public"
 accounts_schema = "public"
 redis_key_prefix = ""
 clickhouse_database = "default"
 
 [multitenancy.tenants.public.user]
-control_center_url =  "http://localhost:9000"
+control_center_url = "https://dashboard-dev.dfl24.com"
 
 [user_auth_methods]
 encryption_key = "A8EF32E029BC3342E54BF2E172A4D7AA43E8EF9D2C3A624A9F04E2EF79DC698F"
 
 [generic_link]
 [generic_link.payment_method_collect]
-sdk_url = "http://localhost:9090/0.16.7/v0/HyperLoader.js"
+sdk_url = "https://pay-dev.dfl24.com/HyperLoader.js"
 expiry = 900
 [generic_link.payment_method_collect.ui_config]
 theme = "#4285F4"
@@ -1257,7 +1257,7 @@ bank_transfer = "ach,bacs,sepa"
 wallet = "paypal,pix,venmo"
 
 [generic_link.payout_link]
-sdk_url = "http://localhost:9090/0.16.7/v0/HyperLoader.js"
+sdk_url = "https://pay-dev.dfl24.com/HyperLoader.js"
 expiry = 900
 [generic_link.payout_link.ui_config]
 theme = "#4285F4"
@@ -1392,7 +1392,7 @@ enabled = false # Enable or disable internal api key, merchant id and profile id
 internal_api_key = "test_internal_api_key" # API key for internal merchant id and profile id based authentication
 
 [internal_services] # Internal services base urls and configs
-payments_base_url = "http://localhost:8080"
+payments_base_url = "https://api-dev.dfl24.com"
 
 [superposition]
 enabled = true # Enable Superposition for dynamic configuration management

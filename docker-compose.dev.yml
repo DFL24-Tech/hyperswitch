@@ -87,7 +87,7 @@ services:
       redis-standalone:
         condition: service_healthy
     environment:
-      - API_HOSTNAME=http://localhost:8081
+      - API_HOSTNAME=https://config-dev.dfl24.com
       - REDIS_URL=http://redis-standalone:6379
     healthcheck:
       test: curl --fail http://localhost:8080/health || exit 1
@@ -128,7 +128,7 @@ services:
   hyperswitch-server:
     image: docker.juspay.io/juspaydotin/hyperswitch-router:standalone
     pull_policy: always
-    command: /local/bin/router -f /local/config/docker_compose.toml
+    command: /local/bin/router -f /local/config/docker_compose.dev.toml
     ports:
       - "8080:8080"
     networks:
@@ -157,7 +157,7 @@ services:
   hyperswitch-producer:
     image: docker.juspay.io/juspaydotin/hyperswitch-producer:standalone
     pull_policy: always
-    command: /local/bin/scheduler -f /local/config/docker_compose.toml
+    command: /local/bin/scheduler -f /local/config/docker_compose.dev.toml
     networks:
       - router_net
     profiles:
@@ -175,7 +175,7 @@ services:
   hyperswitch-consumer:
     image: docker.juspay.io/juspaydotin/hyperswitch-consumer:standalone
     pull_policy: always
-    command: /local/bin/scheduler -f /local/config/docker_compose.toml
+    command: /local/bin/scheduler -f /local/config/docker_compose.dev.toml
     networks:
       - router_net
     profiles:
@@ -199,7 +199,7 @@ services:
   hyperswitch-drainer:
     image: docker.juspay.io/juspaydotin/hyperswitch-drainer:standalone
     pull_policy: always
-    command: /local/bin/drainer -f /local/config/docker_compose.toml
+    command: /local/bin/drainer -f /local/config/docker_compose.dev.toml
     deploy:
       replicas: ${DRAINER_INSTANCE_COUNT:-1}
     networks:
@@ -229,8 +229,8 @@ services:
     environment:
       - ENABLE_LOGGING=true
       - SDK_ENV=production
-      - ENV_LOGGING_URL=https://api.dfl24.com
-      - ENV_BACKEND_URL=https://api.dfl24.com
+      - ENV_LOGGING_URL=https://api-dev.dfl24.com
+      - ENV_BACKEND_URL=https://api-dev.dfl24.com
     labels:
       logs: "promtail"
 
@@ -244,7 +244,7 @@ services:
       - configPath=/tmp/dashboard-config.toml
       - themeConfigPath=/tmp/dashboard-theme.json
     volumes:
-      - ./config/dashboard.toml:/tmp/dashboard-config.toml
+      - ./config/dashboard.dev.toml:/tmp/dashboard-config.toml
       - ./config/dashboard_theme.json:/tmp/dashboard-theme.json
     depends_on:
       hyperswitch-server:
@@ -430,7 +430,7 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka0:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka0:29092,PLAINTEXT_HOST://kafka-dev.dfl24.com:9092
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
@@ -545,7 +545,7 @@ services:
       - HYPERSWITCH_PUBLISHABLE_KEY=placeholder_publishable_key
       - HYPERSWITCH_SECRET_KEY=placeholder_api_key
       - PROFILE_ID=placeholder_profile_id
-      - HYPERSWITCH_CLIENT_URL=http://localhost:9050
-      - HYPERSWITCH_SERVER_URL=http://localhost:8080
+      - HYPERSWITCH_CLIENT_URL=https://pay-dev.dfl24.com
+      - HYPERSWITCH_SERVER_URL=https://api-dev.dfl24.com
     labels:
       logs: "promtail"
