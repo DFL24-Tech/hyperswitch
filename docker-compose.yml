@@ -83,14 +83,24 @@ services:
       - "8081:8080"
     networks:
       - router_net
+    depends_on:
+      redis-standalone:
+        condition: service_healthy
     environment:
       - API_HOSTNAME=http://localhost:8081
+      - REDIS_URL=http://redis-standalone:6379
+    healthcheck:
+      test: curl --fail http://localhost:8080/health || exit 1
+      interval: 5s
+      retries: 12
+      start_period: 10s
+      timeout: 5s
 
   superposition-init:
     image: alpine:latest
     depends_on:
       superposition:
-        condition: service_started
+        condition: service_healthy
     networks:
       - router_net
     volumes:
@@ -101,7 +111,7 @@ services:
       - SEED_FILE=/seed.toml
       - WORKSPACE_ID=dev
       - ORG_ID=localorg
-    command: sh -c "apk add --no-cache curl jq yq && sh /seed_superposition.sh"
+    command: sh -c "apk add --no-cache bash curl jq yq && bash /seed_superposition.sh"
     restart: "no"
 
   mailhog:

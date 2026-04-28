@@ -14,14 +14,21 @@ echo "Workspace: $WORKSPACE_ID, Org: $ORG_ID"
 
 # Wait for superposition to be ready
 echo "Waiting for Superposition to be ready..."
+superposition_ready=false
 for i in {1..30}; do
     if curl -s "$SUPERPOSITION_URL/health" > /dev/null 2>&1; then
         echo "Superposition is ready!"
+        superposition_ready=true
         break
     fi
     echo "Waiting for Superposition... ($i/30)"
     sleep 2
 done
+
+if [ "$superposition_ready" != "true" ]; then
+    echo "Error: Superposition failed to become ready after 60 seconds"
+    exit 1
+fi
 
 # Check if seed file exists
 if [ ! -f "$SEED_FILE" ]; then
