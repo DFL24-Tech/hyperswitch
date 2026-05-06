@@ -190,6 +190,7 @@ pub enum Connector {
     Tsys,
     // UnifiedAuthenticationService,
     Vgs,
+    Vnpay,
     Volt,
     Wellsfargo,
     // Wellsfargopayout,

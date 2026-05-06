@@ -147,6 +147,7 @@ pub struct Connectors {
     pub tsys: ConnectorParams,
     pub unified_authentication_service: ConnectorParams,
     pub vgs: ConnectorParams,
+    pub vnpay: ConnectorParams,
     pub volt: ConnectorParamsWithSecondaryBaseUrl,
     pub wellsfargo: ConnectorParams,
     pub wellsfargopayout: ConnectorParams,
