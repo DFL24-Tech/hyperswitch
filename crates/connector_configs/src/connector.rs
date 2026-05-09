@@ -325,6 +325,7 @@ pub struct ConnectorConfig {
     pub loonio_payout: Option<ConnectorTomlConfig>,
     pub mifinity: Option<ConnectorTomlConfig>,
     pub mollie: Option<ConnectorTomlConfig>,
+    pub momo: Option<ConnectorTomlConfig>,
     pub moneris: Option<ConnectorTomlConfig>,
     pub mpgs: Option<ConnectorTomlConfig>,
     pub multisafepay: Option<ConnectorTomlConfig>,

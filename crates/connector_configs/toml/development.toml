@@ -8553,6 +8553,9 @@ payment_method_type = "JCB"
 payment_method_type = "Discover"
 [[imerchantsolutions.debit]]
 payment_method_type = "UnionPay"
+[momo]
+[momo.connector_auth.HeaderKey]
+api_key = "API Key"
 
 [sanlam]
 [sanlam.connector_auth.BodyKey]

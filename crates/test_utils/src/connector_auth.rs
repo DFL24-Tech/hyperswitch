@@ -83,6 +83,7 @@ pub struct ConnectorAuthentication {
     pub loonio: Option<HeaderKey>,
     pub mifinity: Option<HeaderKey>,
     pub mollie: Option<BodyKey>,
+    pub momo: Option<HeaderKey>,
     pub moneris: Option<SignatureKey>,
     pub mpgs: Option<HeaderKey>,
     pub multisafepay: Option<HeaderKey>,

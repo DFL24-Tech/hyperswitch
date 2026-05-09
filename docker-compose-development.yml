@@ -70,8 +70,16 @@ services:
       - "8081:8080"
     networks:
       - router_net
+    depends_on:
+      pg:
+        condition: service_healthy
     environment:
       - API_HOSTNAME=http://localhost:8081
+      - DB_HOST=pg
+      - DB_PORT=5432
+      - DB_USER=db_user
+      - DB_PASSWORD=db_pass
+      - DB_NAME=hyperswitch_db
 
   superposition-init:
     image: alpine:latest
@@ -112,6 +120,8 @@ services:
     environment:
       - CARGO_HOME=/cargo_cache
       - CARGO_TARGET_DIR=/cargo_build_cache
+      - CARGO_BUILD_JOBS=1
+      - RUSTFLAGS=-C codegen-units=1
     depends_on:
       pg:
         condition: service_healthy

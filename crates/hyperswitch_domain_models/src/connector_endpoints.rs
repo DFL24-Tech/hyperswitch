@@ -86,6 +86,7 @@ pub struct Connectors {
     pub loonio: ConnectorParams,
     pub mifinity: ConnectorParams,
     pub mollie: ConnectorParams,
+    pub momo: ConnectorParams,
     pub moneris: ConnectorParams,
     pub mpgs: ConnectorParams,
     pub multisafepay: ConnectorParams,

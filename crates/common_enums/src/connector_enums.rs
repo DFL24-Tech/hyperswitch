@@ -133,6 +133,7 @@ pub enum Connector {
     Loonio,
     Mifinity,
     Mollie,
+    Momo,
     Moneris,
     Multisafepay,
     Netcetera,
@@ -368,6 +369,7 @@ impl Connector {
             | Self::Loonio
             | Self::Mifinity
             | Self::Mollie
+            | Self::Momo
             | Self::Moneris
             | Self::Multisafepay
             | Self::Nexinets

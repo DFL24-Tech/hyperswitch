@@ -73,6 +73,7 @@ mod katapult;
 mod loonio;
 mod mifinity;
 mod mollie;
+mod momo;
 mod moneris;
 mod mpgs;
 mod multisafepay;
