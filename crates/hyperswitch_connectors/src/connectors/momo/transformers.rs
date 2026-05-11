@@ -74,10 +74,6 @@ fn compute_signature(message: &str, secret_key: &Secret<String>) -> CustomResult
 pub enum MomoRequestType {
     #[serde(rename = "captureWallet")]
     CaptureWallet,
-    #[serde(rename = "payWithCC")]
-    PayWithCc,
-    #[serde(rename = "payWithATM")]
-    PayWithAtm,
 }
 
 // ─── Create payment ──────────────────────────────────────────────────────────

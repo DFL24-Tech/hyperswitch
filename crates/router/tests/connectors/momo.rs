@@ -13,7 +13,7 @@ impl utils::Connector for MomoTest {
         use router::connector::Momo;
         utils::construct_connector_data_old(
             Box::new(Momo::new()),
-            types::Connector::Plaid,
+            types::Connector::Momo,
             api::GetToken::Connector,
             None,
         )
