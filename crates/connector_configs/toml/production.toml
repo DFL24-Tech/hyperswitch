@@ -4841,6 +4841,13 @@ api_secret = "Developer Id"
 [tsys.connector_webhook_details]
 merchant_secret = "Source verification key"
 
+[vnpay]
+[[vnpay.bank_redirect]]
+  payment_method_type = "online_banking_vietnam"
+[vnpay.connector_auth.BodyKey]
+api_key = "Hash Secret"
+key1 = "TMN Code"
+
 [volt]
 [[volt.bank_redirect]]
 payment_method_type = "open_banking_uk"

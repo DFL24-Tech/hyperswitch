@@ -191,6 +191,12 @@ api_key="API Key"
 [gocardless]
 api_key="API Key"
 
+[vnpay]
+# api_key = hash_secret (vnp_HashSecret)
+# key1 = terminal code (vnp_TmnCode)
+api_key = "ISMXG2U5IUGZC7DWQLRC93VU0159WZN4"
+key1 = "T2055OX1"
+
 [volt]
 api_key = "Username"
 api_secret = "Password"

@@ -1940,6 +1940,13 @@ fn get_bank_redirect_required_fields(
             )]),
         ),
         (
+            enums::PaymentMethodType::OnlineBankingVietnam,
+            connectors(vec![(
+                Connector::Vnpay,
+                fields(vec![], vec![], vec![]),
+            )]),
+        ),
+        (
             enums::PaymentMethodType::Bizum,
             connectors(vec![(Connector::Adyen, fields(vec![], vec![], vec![]))]),
         ),

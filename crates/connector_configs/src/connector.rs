@@ -388,6 +388,7 @@ pub struct ConnectorConfig {
     pub netcetera: Option<ConnectorTomlConfig>,
     pub tsys: Option<ConnectorTomlConfig>,
     pub vgs: Option<ConnectorTomlConfig>,
+    pub vnpay: Option<ConnectorTomlConfig>,
     pub volt: Option<ConnectorTomlConfig>,
     pub wellsfargo: Option<ConnectorTomlConfig>,
     #[cfg(feature = "payouts")]
@@ -635,6 +636,7 @@ impl ConnectorConfig {
             Connector::Taxjar => Ok(connector_data.taxjar),
             Connector::Tsys => Ok(connector_data.tsys),
             Connector::Vgs => Ok(connector_data.vgs),
+            Connector::Vnpay => Ok(connector_data.vnpay),
             Connector::Volt => Ok(connector_data.volt),
             Connector::Wellsfargo => Ok(connector_data.wellsfargo),
             Connector::Wise => Err("Use get_payout_connector_config".to_string()),

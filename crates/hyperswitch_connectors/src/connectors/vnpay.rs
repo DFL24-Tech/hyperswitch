@@ -1,6 +1,6 @@
 pub mod transformers;
 
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, HashMap};
 use std::sync::LazyLock;
 
 use common_enums::{enums, CallConnectorAction, PaymentAction};
@@ -18,7 +18,7 @@ use hyperswitch_domain_models::{
     router_request_types::{
         AccessTokenRequestData, PaymentMethodTokenizationData, PaymentsAuthorizeData,
         PaymentsCancelData, PaymentsCaptureData, PaymentsSessionData, PaymentsSyncData,
-        RefundsData, SetupMandateRequestData,
+        RefundsData, ResponseId, SetupMandateRequestData,
     },
     router_response_types::{
         ConnectorInfo, PaymentMethodDetails, PaymentsResponseData, RedirectForm,
@@ -43,7 +43,7 @@ use hyperswitch_interfaces::{
     },
     webhooks::{IncomingWebhook, IncomingWebhookRequestDetails, WebhookContext},
 };
-use hyperswitch_masking::Maskable;
+use hyperswitch_masking::{ExposeInterface, Maskable};
 use transformers as vnpay;
 
 use crate::types::ResponseRouterData;
@@ -185,10 +185,13 @@ impl ConnectorIntegration<Authorize, PaymentsAuthorizeData, PaymentsResponseData
         req: &PaymentsAuthorizeRouterData,
         connectors: &Connectors,
     ) -> CustomResult<Option<Request>, ConnectorError> {
+        // Validate params eagerly — errors surface before any redirect
         let auth = vnpay::VnpayAuthType::try_from(&req.connector_auth_type)?;
-        let router_data = vnpay::VnpayRouterData::from((req.request.amount, req));
-        let params = vnpay::VnpayPaymentParams::try_from(&router_data)?;
+        let wrapper = vnpay::VnpayRouterData::from((req.request.amount, req));
+        let params = vnpay::VnpayPaymentParams::try_from(&wrapper)?;
 
+        // Build the signed URL and make a lightweight GET so handle_response is invoked.
+        // The actual redirect form is assembled inside handle_response using the same data.
         let redirect_url =
             vnpay::build_redirect_url(self.base_url(connectors), &params, auth.hash_secret.peek())?;
 
@@ -206,19 +209,44 @@ impl ConnectorIntegration<Authorize, PaymentsAuthorizeData, PaymentsResponseData
         _event_builder: Option<&mut ConnectorEvent>,
         _res: Response,
     ) -> CustomResult<PaymentsAuthorizeRouterData, ConnectorError> {
-        // The framework handles the redirect — we just set status to pending
+        let auth = vnpay::VnpayAuthType::try_from(&data.connector_auth_type)?;
+        let wrapper = vnpay::VnpayRouterData::from((data.request.amount, data));
+        let params = vnpay::VnpayPaymentParams::try_from(&wrapper)?;
+
+        // Get base URL from connector metadata, default to sandbox
+        let base_url = data
+            .connector_meta_data
+            .as_ref()
+            .and_then(|meta| {
+                serde_json::from_value::<vnpay::VnpayConnectorMeta>(meta.clone().expose()).ok()
+            })
+            .and_then(|m| m.payment_base_url)
+            .unwrap_or_else(|| "https://sandbox.vnpayment.vn/".to_string());
+
+        // Build the signed params map for the redirect form
+        let mut map = params.to_sorted_map();
+        let sig = vnpay::compute_vnpay_signature(&map, auth.hash_secret.peek())
+            .change_context(ConnectorError::RequestEncodingFailed)?;
+        map.insert("vnp_SecureHash".to_string(), sig);
+
+        let endpoint = format!("{}paymentv2/vpcpay.html", base_url);
+
         Ok(PaymentsAuthorizeRouterData {
             status: enums::AttemptStatus::AuthenticationPending,
             response: Ok(PaymentsResponseData::TransactionResponse {
-                resource_id:
-                    hyperswitch_domain_models::router_request_types::ResponseId::NoResponseId,
-                redirection_data: None,
-                mandate_reference: None,
+                resource_id: ResponseId::NoResponseId,
+                redirection_data: Box::new(Some(RedirectForm::Form {
+                    endpoint,
+                    method: Method::Get,
+                    form_fields: HashMap::from_iter(map),
+                })),
+                mandate_reference: Box::new(None),
                 connector_metadata: None,
                 network_txn_id: None,
                 connector_response_reference_id: None,
                 incremental_authorization_allowed: None,
-                charge_id: None,
+                authentication_data: None,
+                charges: None,
             }),
             ..data.clone()
         })
@@ -300,14 +328,15 @@ impl ConnectorIntegration<PSync, PaymentsSyncData, PaymentsResponseData> for Vnp
         Ok(PaymentsSyncRouterData {
             status,
             response: Ok(PaymentsResponseData::TransactionResponse {
-                resource_id: hyperswitch_domain_models::router_request_types::ResponseId::ConnectorTransactionId(txn_no),
-                redirection_data: None,
-                mandate_reference: None,
+                resource_id: ResponseId::ConnectorTransactionId(txn_no),
+                redirection_data: Box::new(None),
+                mandate_reference: Box::new(None),
                 connector_metadata: None,
                 network_txn_id: None,
                 connector_response_reference_id: query_response.txn_ref,
                 incremental_authorization_allowed: None,
-                charge_id: None,
+                authentication_data: None,
+                charges: None,
             }),
             ..data.clone()
         })

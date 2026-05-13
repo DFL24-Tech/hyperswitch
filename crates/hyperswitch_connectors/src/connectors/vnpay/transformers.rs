@@ -281,6 +281,16 @@ impl VnpayIpnResponse {
     }
 }
 
+// ─── Connector metadata ───────────────────────────────────────────────────────
+
+/// Optional metadata stored in the merchant connector account.
+/// Set `payment_base_url` to override the default sandbox URL.
+/// Example: `{"payment_base_url": "https://vnpayment.vn/"}`
+#[derive(Debug, Deserialize, Default)]
+pub struct VnpayConnectorMeta {
+    pub payment_base_url: Option<String>,
+}
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 /// HMAC-SHA512 over URL-encoded, alphabetically-sorted params.

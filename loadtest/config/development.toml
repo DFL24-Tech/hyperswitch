@@ -235,6 +235,7 @@ trustpay.base_url_bank_redirects = "https://aapi.trustpay.eu/"
 tsys.base_url = "https://stagegw.transnox.com/"
 unified_authentication_service.base_url = "http://localhost:8000"
 vgs.base_url = "https://api.sandbox.verygoodvault.com/"
+vnpay.base_url = "https://sandbox.vnpayment.vn/"
 volt.base_url = "https://gateway.sandbox.volt.io"
 volt.secondary_base_url = "https://api.sandbox.volt.io"
 wellsfargo.base_url = "https://apitest.cybersource.com/"
@@ -354,6 +355,7 @@ cards = [
     "tsys",
     "unified_authentication_service",
     "vgs",
+    "vnpay",
     "volt",
     "wellsfargo",
     "wellsfargopayout",
@@ -427,6 +429,9 @@ credit = { currency = "USD,CAD" }
 
 [pm_filters.prophetpay]
 card_redirect = { country = "US", currency = "USD" }
+
+[pm_filters.vnpay]
+online_banking_vietnam = { country = "VN", currency = "VND" }
 
 [pm_filters.volt]
 open_banking = { country = "DE,GB,AT,BE,CY,EE,ES,FI,FR,GR,HR,IE,IT,LT,LU,LV,MT,NL,PT,SI,SK,BG,CZ,DK,HU,NO,PL,RO,SE,AU,BR", currency = "GBP,EUR,DKK,NOK,PLN,SEK" }

@@ -182,6 +182,7 @@ impl ForeignTryFrom<api_enums::Connector> for euclid::enums::RoutableConnectors 
                     message: "Vgs is not a routable connector".to_string(),
                 })?
             }
+            api_enums::Connector::Vnpay => Self::Vnpay,
             api_enums::Connector::Volt => Self::Volt,
             api_enums::Connector::Wellsfargo => Self::Wellsfargo,
             // api_enums::Connector::Wellsfargopayout => Self::Wellsfargopayout,

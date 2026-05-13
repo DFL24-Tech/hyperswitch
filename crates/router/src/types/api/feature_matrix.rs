@@ -410,6 +410,9 @@ impl FeatureMatrixConnectorData {
                 //     connector::UnifiedAuthenticationService,
                 // ))),
                 enums::Connector::Vgs => Ok(ConnectorEnum::Old(Box::new(&connector::Vgs))),
+                enums::Connector::Vnpay => {
+                    Ok(ConnectorEnum::Old(Box::new(connector::Vnpay::new())))
+                }
                 enums::Connector::Volt => Ok(ConnectorEnum::Old(Box::new(connector::Volt::new()))),
                 enums::Connector::Wellsfargo => {
                     Ok(ConnectorEnum::Old(Box::new(connector::Wellsfargo::new())))

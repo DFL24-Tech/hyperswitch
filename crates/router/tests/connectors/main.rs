@@ -133,6 +133,7 @@ mod tsys;
 mod unified_authentication_service;
 mod utils;
 mod vgs;
+mod vnpay;
 mod volt;
 mod wellsfargo;
 mod worldpaymodular;
