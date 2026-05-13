@@ -7,13 +7,13 @@ use common_utils::{
 use error_stack::ResultExt;
 use hyperswitch_domain_models::{
     router_data::{ConnectorAuthType, ErrorResponse, RouterData},
-    router_flow_types::{Authorize, Execute, PSync, RSync},
-    router_request_types::{PaymentsAuthorizeData, RefundsData, ResponseId},
+    router_flow_types::{Authorize, Execute, RSync},
+    router_request_types::{PaymentsAuthorizeData, ResponseId},
     router_response_types::{PaymentsResponseData, RedirectForm, RefundsResponseData},
     types::{PaymentsAuthorizeRouterData, PaymentsSyncRouterData, RefundSyncRouterData, RefundsRouterData},
 };
 use hyperswitch_interfaces::errors::ConnectorError;
-use hyperswitch_masking::{ExposeInterface, PeekInterface, Secret};
+use hyperswitch_masking::{PeekInterface, Secret};
 use serde::{Deserialize, Serialize};
 use common_utils::request::Method;
 

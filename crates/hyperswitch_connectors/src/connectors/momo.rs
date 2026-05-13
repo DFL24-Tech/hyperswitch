@@ -29,7 +29,7 @@ use hyperswitch_domain_models::{
         SupportedPaymentMethods, SupportedPaymentMethodsExt,
     },
     types::{
-        PaymentsAuthorizeRouterData, PaymentsCaptureRouterData, PaymentsSyncRouterData,
+        PaymentsAuthorizeRouterData, PaymentsSyncRouterData,
         RefundSyncRouterData, RefundsRouterData,
     },
 };
@@ -42,7 +42,7 @@ use hyperswitch_interfaces::{
     errors,
     events::connector_api_logs::ConnectorEvent,
     types::{self, Response},
-    webhooks::{self, IncomingWebhook, IncomingWebhookRequestDetails, WebhookContext},
+    webhooks::{IncomingWebhook, IncomingWebhookRequestDetails, WebhookContext},
 };
 use hyperswitch_masking::{Maskable, PeekInterface};
 use transformers as momo;
@@ -503,7 +503,7 @@ impl IncomingWebhook for Momo {
     fn get_webhook_source_verification_algorithm(
         &self,
         _request: &IncomingWebhookRequestDetails<'_>,
-    ) -> CustomResult<Box<dyn common_utils::crypto::VerifySignature + Send>, errors::ConnectorError>
+    ) -> CustomResult<Box<dyn crypto::VerifySignature + Send>, errors::ConnectorError>
     {
         Ok(Box::new(crypto::HmacSha256))
     }
