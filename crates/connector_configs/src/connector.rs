@@ -669,6 +669,7 @@ impl ConnectorConfig {
             Connector::Payjustnow => Ok(connector_data.payjustnow),
             Connector::Payjustnowinstore => Ok(connector_data.payjustnowinstore),
             Connector::Imerchantsolutions => Ok(connector_data.imerchantsolutions),
+            Connector::Momo => Ok(connector_data.momo),
         }
     }
 }
