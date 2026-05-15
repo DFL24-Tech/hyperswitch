@@ -325,6 +325,7 @@ pub struct ConnectorConfig {
     pub loonio_payout: Option<ConnectorTomlConfig>,
     pub mifinity: Option<ConnectorTomlConfig>,
     pub mollie: Option<ConnectorTomlConfig>,
+    pub momo: Option<ConnectorTomlConfig>,
     pub moneris: Option<ConnectorTomlConfig>,
     pub mpgs: Option<ConnectorTomlConfig>,
     pub multisafepay: Option<ConnectorTomlConfig>,
@@ -668,6 +669,7 @@ impl ConnectorConfig {
             Connector::Payjustnow => Ok(connector_data.payjustnow),
             Connector::Payjustnowinstore => Ok(connector_data.payjustnowinstore),
             Connector::Imerchantsolutions => Ok(connector_data.imerchantsolutions),
+            Connector::Momo => Ok(connector_data.momo),
         }
     }
 }

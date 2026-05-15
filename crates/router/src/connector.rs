@@ -30,7 +30,7 @@ pub use hyperswitch_connectors::connectors::{
     inespay::Inespay, itaubank, itaubank::Itaubank, jpmorgan, jpmorgan::Jpmorgan,
     juspaythreedsserver, juspaythreedsserver::Juspaythreedsserver, katapult, katapult::Katapult,
     klarna, klarna::Klarna, loonio, loonio::Loonio, mifinity, mifinity::Mifinity, mollie,
-    mollie::Mollie, moneris, moneris::Moneris, mpgs, mpgs::Mpgs, multisafepay,
+    mollie::Mollie, momo, momo::Momo, moneris, moneris::Moneris, mpgs, mpgs::Mpgs, multisafepay,
     multisafepay::Multisafepay, netcetera, netcetera::Netcetera, nexinets, nexinets::Nexinets,
     nexixpay, nexixpay::Nexixpay, nmi, nmi::Nmi, nomupay, nomupay::Nomupay, noon, noon::Noon,
     nordea, nordea::Nordea, novalnet, novalnet::Novalnet, nuvei, nuvei::Nuvei, opayo, opayo::Opayo,

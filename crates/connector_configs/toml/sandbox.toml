@@ -8527,6 +8527,12 @@ payment_method_type = "Discover"
 [[imerchantsolutions.debit]]
 payment_method_type = "UnionPay"
 
+[momo]
+[momo.connector_auth.SignatureKey]
+api_key = "Partner Code"
+key1 = "Access Key"
+api_secret = "Secret Key"
+
 [sanlam]
 [sanlam.connector_auth.BodyKey]
 api_key = "API Key"

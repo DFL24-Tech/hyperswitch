@@ -246,6 +246,9 @@ impl FeatureMatrixConnectorData {
                     // enums::Connector::Moneris => Ok(ConnectorEnum::Old(Box::new(connector::Moneris))),
                     Ok(ConnectorEnum::Old(Box::new(connector::Mollie::new())))
                 }
+                enums::Connector::Momo => {
+                    Ok(ConnectorEnum::Old(Box::new(connector::Momo::new())))
+                }
                 enums::Connector::Moneris => {
                     Ok(ConnectorEnum::Old(Box::new(connector::Moneris::new())))
                 }
