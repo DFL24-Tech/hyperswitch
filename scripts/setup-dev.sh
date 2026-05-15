@@ -5,7 +5,7 @@ COMPOSE_FILE="docker-compose.dev.yml"
 CONFIG_FILE="config/docker_compose.dev.toml"
 DASHBOARD_CONFIG_FILE="config/dashboard.dev.toml"
 
-API_URL="https://api-dev.dfl24.com"
+API_URL="https://dashboard-dev.dfl24.com/api"
 DASHBOARD_URL="https://dashboard-dev.dfl24.com"
 SDK_URL="https://pay-dev.dfl24.com"
 MONITORING_URL="https://monitoring-dev.dfl24.com"
