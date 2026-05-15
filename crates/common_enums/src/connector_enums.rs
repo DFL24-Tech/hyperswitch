@@ -440,7 +440,8 @@ impl Connector {
             | Self::Payjustnow
             | Self::Payjustnowinstore
             | Self::Phonepe
-            | Self::Imerchantsolutions => false,
+            | Self::Imerchantsolutions
+            | Self::Vnpay => false,
             Self::Stripe | Self::Checkout | Self::Zift | Self::Nmi | Self::Braintree|
             Self::Cybersource | Self::Archipel | Self::Nuvei | Self::Adyen => true,
         }

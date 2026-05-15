@@ -1278,6 +1278,7 @@ impl TryFrom<&PaypalRouterData<&PaymentsAuthorizeRouterData>> for PaypalPayments
                     | enums::PaymentMethodType::OnlineBankingFpx
                     | enums::PaymentMethodType::OnlineBankingPoland
                     | enums::PaymentMethodType::OnlineBankingSlovakia
+                    | enums::PaymentMethodType::OnlineBankingVietnam
                     | enums::PaymentMethodType::OpenBankingPIS
                     | enums::PaymentMethodType::Oxxo
                     | enums::PaymentMethodType::PagoEfectivo

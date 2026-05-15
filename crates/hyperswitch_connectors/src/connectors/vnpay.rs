@@ -6,6 +6,7 @@ use std::sync::LazyLock;
 use common_enums::{enums, CallConnectorAction, PaymentAction};
 use common_utils::{
     errors::CustomResult,
+    ext_traits::BytesExt,
     request::{Method, Request, RequestBuilder, RequestContent},
 };
 use error_stack::ResultExt;
@@ -25,8 +26,7 @@ use hyperswitch_domain_models::{
         RefundsResponseData, SupportedPaymentMethods, SupportedPaymentMethodsExt,
     },
     types::{
-        PaymentsAuthorizeRouterData, PaymentsCancelRouterData, PaymentsCaptureRouterData,
-        PaymentsSyncRouterData, RefundsRouterData, SetupMandateRouterData,
+        PaymentsAuthorizeRouterData, PaymentsSyncRouterData,
     },
 };
 use hyperswitch_interfaces::{
@@ -38,15 +38,13 @@ use hyperswitch_interfaces::{
     errors::ConnectorError,
     events::connector_api_logs::ConnectorEvent,
     types::{
-        PaymentsAuthorizeType, PaymentsCaptureType, PaymentsSyncType, PaymentsVoidType,
-        RefundExecuteType, RefundSyncType, Response, SetupMandateType,
+        PaymentsSyncType, Response,
     },
     webhooks::{IncomingWebhook, IncomingWebhookRequestDetails, WebhookContext},
 };
-use hyperswitch_masking::{ExposeInterface, Maskable};
+use hyperswitch_masking::{ExposeInterface, Maskable, PeekInterface};
 use transformers as vnpay;
 
-use crate::types::ResponseRouterData;
 
 // ─── Connector struct ─────────────────────────────────────────────────────────
 
@@ -73,7 +71,6 @@ impl api::Refund for Vnpay {}
 impl api::RefundExecute for Vnpay {}
 impl api::RefundSync for Vnpay {}
 impl api::PaymentToken for Vnpay {}
-impl api::PaymentsCompleteAuthorize for Vnpay {}
 
 // ─── ConnectorCommonExt ───────────────────────────────────────────────────────
 
@@ -116,7 +113,7 @@ impl ConnectorCommon for Vnpay {
     fn build_error_response(
         &self,
         res: Response,
-        event_builder: Option<&mut ConnectorEvent>,
+        _event_builder: Option<&mut ConnectorEvent>,
     ) -> CustomResult<ErrorResponse, ConnectorError> {
         router_env::logger::info!(connector_response=?res);
         Ok(ErrorResponse {
@@ -508,7 +505,7 @@ static VNPAY_CONNECTOR_INFO: ConnectorInfo = ConnectorInfo {
     display_name: "VNPay",
     description: "VNPay is Vietnam's leading payment gateway supporting local bank transfers, ATM cards, and QR code payments.",
     connector_type: enums::HyperswitchConnectorCategory::PaymentGateway,
-    integration_status: enums::ConnectorIntegrationStatus::InDevelopment,
+    integration_status: enums::ConnectorIntegrationStatus::Alpha,
 };
 
 static VNPAY_SUPPORTED_WEBHOOK_FLOWS: [enums::EventClass; 1] = [enums::EventClass::Payments];

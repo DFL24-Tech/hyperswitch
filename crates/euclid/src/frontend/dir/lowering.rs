@@ -199,6 +199,7 @@ impl From<enums::BankRedirectType> for global_enums::PaymentMethodType {
             enums::BankRedirectType::OnlineBankingFinland => Self::OnlineBankingFinland,
             enums::BankRedirectType::OnlineBankingPoland => Self::OnlineBankingPoland,
             enums::BankRedirectType::OnlineBankingSlovakia => Self::OnlineBankingSlovakia,
+            enums::BankRedirectType::OnlineBankingVietnam => Self::OnlineBankingVietnam,
             enums::BankRedirectType::OnlineBankingFpx => Self::OnlineBankingFpx,
             enums::BankRedirectType::OnlineBankingThailand => Self::OnlineBankingThailand,
             enums::BankRedirectType::OpenBankingUk => Self::OpenBankingUk,

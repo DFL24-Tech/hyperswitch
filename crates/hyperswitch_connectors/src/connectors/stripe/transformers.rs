@@ -927,6 +927,7 @@ impl TryFrom<enums::PaymentMethodType> for StripePaymentMethodType {
             | enums::PaymentMethodType::OnlineBankingFinland
             | enums::PaymentMethodType::OnlineBankingPoland
             | enums::PaymentMethodType::OnlineBankingSlovakia
+            | enums::PaymentMethodType::OnlineBankingVietnam
             | enums::PaymentMethodType::OpenBankingUk
             | enums::PaymentMethodType::OpenBankingPIS
             | enums::PaymentMethodType::PagoEfectivo

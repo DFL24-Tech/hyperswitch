@@ -2210,7 +2210,6 @@ default_imp_for_connector_redirect_response!(
     connectors::Worldline,
     connectors::Worldpayvantiv,
     connectors::Worldpayxml,
-    connectors::Vnpay,
     connectors::Volt,
     connectors::Zsl,
     connectors::CtpMastercard

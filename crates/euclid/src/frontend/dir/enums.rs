@@ -168,6 +168,7 @@ pub enum BankRedirectType {
     OnlineBankingFinland,
     OnlineBankingPoland,
     OnlineBankingSlovakia,
+    OnlineBankingVietnam,
     OnlineBankingFpx,
     OnlineBankingThailand,
     OpenBankingUk,

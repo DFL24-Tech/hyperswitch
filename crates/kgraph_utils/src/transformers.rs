@@ -245,6 +245,9 @@ impl IntoDirValue for (api_enums::PaymentMethodType, api_enums::PaymentMethod) {
             api_enums::PaymentMethodType::OnlineBankingSlovakia => {
                 Ok(dirval!(BankRedirectType = OnlineBankingSlovakia))
             }
+            api_enums::PaymentMethodType::OnlineBankingVietnam => {
+                Ok(dirval!(BankRedirectType = OnlineBankingVietnam))
+            }
             api_enums::PaymentMethodType::Swish => Ok(dirval!(WalletType = Swish)),
             api_enums::PaymentMethodType::Trustly => Ok(dirval!(BankRedirectType = Trustly)),
             api_enums::PaymentMethodType::Bizum => Ok(dirval!(BankRedirectType = Bizum)),

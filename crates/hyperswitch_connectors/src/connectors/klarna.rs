@@ -613,6 +613,7 @@ impl ConnectorIntegration<Authorize, PaymentsAuthorizeData, PaymentsResponseData
                         | common_enums::PaymentMethodType::OnlineBankingFpx
                         | common_enums::PaymentMethodType::OnlineBankingPoland
                         | common_enums::PaymentMethodType::OnlineBankingSlovakia
+                        | common_enums::PaymentMethodType::OnlineBankingVietnam
                         | common_enums::PaymentMethodType::Oxxo
                         | common_enums::PaymentMethodType::PagoEfectivo
                         | common_enums::PaymentMethodType::PermataBankTransfer
@@ -748,6 +749,7 @@ impl ConnectorIntegration<Authorize, PaymentsAuthorizeData, PaymentsResponseData
                         | common_enums::PaymentMethodType::OnlineBankingFpx
                         | common_enums::PaymentMethodType::OnlineBankingPoland
                         | common_enums::PaymentMethodType::OnlineBankingSlovakia
+                        | common_enums::PaymentMethodType::OnlineBankingVietnam
                         | common_enums::PaymentMethodType::Oxxo
                         | common_enums::PaymentMethodType::PagoEfectivo
                         | common_enums::PaymentMethodType::PermataBankTransfer
@@ -891,6 +893,7 @@ impl ConnectorIntegration<Authorize, PaymentsAuthorizeData, PaymentsResponseData
                         | common_enums::PaymentMethodType::OnlineBankingFpx
                         | common_enums::PaymentMethodType::OnlineBankingPoland
                         | common_enums::PaymentMethodType::OnlineBankingSlovakia
+                        | common_enums::PaymentMethodType::OnlineBankingVietnam
                         | common_enums::PaymentMethodType::Oxxo
                         | common_enums::PaymentMethodType::PagoEfectivo
                         | common_enums::PaymentMethodType::PermataBankTransfer
@@ -1026,6 +1029,7 @@ impl ConnectorIntegration<Authorize, PaymentsAuthorizeData, PaymentsResponseData
                         | common_enums::PaymentMethodType::OnlineBankingFpx
                         | common_enums::PaymentMethodType::OnlineBankingPoland
                         | common_enums::PaymentMethodType::OnlineBankingSlovakia
+                        | common_enums::PaymentMethodType::OnlineBankingVietnam
                         | common_enums::PaymentMethodType::Oxxo
                         | common_enums::PaymentMethodType::PagoEfectivo
                         | common_enums::PaymentMethodType::PermataBankTransfer

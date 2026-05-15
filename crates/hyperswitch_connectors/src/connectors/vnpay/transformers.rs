@@ -1,17 +1,14 @@
 use std::collections::BTreeMap;
 
 use common_enums::{AttemptStatus, Currency};
-use common_utils::{crypto, errors::CustomResult};
+use common_utils::{crypto, crypto::SignMessage, errors::CustomResult};
 use error_stack::{report, ResultExt};
 use hyperswitch_domain_models::{
-    router_data::{ConnectorAuthType, ErrorResponse},
-    router_flow_types::{Authorize, PSync},
-    router_request_types::{PaymentsAuthorizeData, PaymentsSyncData, ResponseId},
-    router_response_types::{PaymentsResponseData, RedirectForm},
+    router_data::ConnectorAuthType,
     types::{PaymentsAuthorizeRouterData, PaymentsSyncRouterData},
 };
 use hyperswitch_interfaces::errors::ConnectorError;
-use hyperswitch_masking::{ExposeInterface, Secret};
+use hyperswitch_masking::{ExposeInterface, PeekInterface, Secret};
 use serde::{Deserialize, Serialize};
 use time::OffsetDateTime;
 
@@ -105,12 +102,7 @@ impl TryFrom<&VnpayRouterData<&PaymentsAuthorizeRouterData>> for VnpayPaymentPar
 
         let txn_ref = item.router_data.connector_request_reference_id.clone();
 
-        let order_info = item
-            .router_data
-            .request
-            .statement_descriptor
-            .clone()
-            .unwrap_or_else(|| format!("Thanh toan don hang {}", txn_ref));
+        let order_info = format!("Thanh toan don hang {}", txn_ref);
 
         let return_url = item
             .router_data
@@ -218,7 +210,7 @@ impl TryFrom<&PaymentsSyncRouterData> for VnpayQueryRequest {
 
 // ─── PSync response ───────────────────────────────────────────────────────────
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct VnpayQueryResponse {
     #[serde(rename = "vnp_ResponseCode")]
     pub response_code: String,
