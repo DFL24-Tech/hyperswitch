@@ -1184,6 +1184,9 @@ pub enum BankRedirectData {
     OnlineBankingThailand {
         issuer: common_enums::BankNames,
     },
+    OnlineBankingVietnam {
+        issuer: common_enums::BankNames,
+    },
     LocalBankRedirect {},
     Eft {
         provider: String,
@@ -2521,6 +2524,9 @@ impl From<api_models::payments::BankRedirectData> for BankRedirectData {
             api_models::payments::BankRedirectData::OnlineBankingThailand { issuer } => {
                 Self::OnlineBankingThailand { issuer }
             }
+            api_models::payments::BankRedirectData::OnlineBankingVietnam { issuer } => {
+                Self::OnlineBankingVietnam { issuer }
+            }
             api_models::payments::BankRedirectData::LocalBankRedirect { .. } => {
                 Self::LocalBankRedirect {}
             }
@@ -3336,6 +3342,9 @@ impl GetPaymentMethodType for BankRedirectData {
             Self::OnlineBankingFpx { .. } => api_enums::PaymentMethodType::OnlineBankingFpx,
             Self::OnlineBankingThailand { .. } => {
                 api_enums::PaymentMethodType::OnlineBankingThailand
+            }
+            Self::OnlineBankingVietnam { .. } => {
+                api_enums::PaymentMethodType::OnlineBankingVietnam
             }
             Self::LocalBankRedirect { .. } => api_enums::PaymentMethodType::LocalBankRedirect,
             Self::OpenBanking { .. } => api_enums::PaymentMethodType::OpenBanking,
