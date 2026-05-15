@@ -3833,6 +3833,9 @@ impl GetPaymentMethodType for BankRedirectData {
             Self::OnlineBankingThailand { .. } => {
                 api_enums::PaymentMethodType::OnlineBankingThailand
             }
+            Self::OnlineBankingVietnam { .. } => {
+                api_enums::PaymentMethodType::OnlineBankingVietnam
+            }
             Self::LocalBankRedirect { .. } => api_enums::PaymentMethodType::LocalBankRedirect,
             Self::OpenBanking { .. } => api_enums::PaymentMethodType::OpenBanking,
         }
@@ -4431,6 +4434,12 @@ pub enum BankRedirectData {
         issuer: common_enums::BankNames,
     },
     #[smithy(nested_value_type)]
+    OnlineBankingVietnam {
+        #[schema(value_type = BankNames)]
+        #[smithy(value_type = "BankNames")]
+        issuer: common_enums::BankNames,
+    },
+    #[smithy(nested_value_type)]
     LocalBankRedirect {},
     #[smithy(nested_value_type)]
     Eft {
@@ -4551,6 +4560,7 @@ impl GetAddressFromPaymentMethodData for BankRedirectData {
             Self::OnlineBankingFpx { .. }
             | Self::LocalBankRedirect {}
             | Self::OnlineBankingThailand { .. }
+            | Self::OnlineBankingVietnam { .. }
             | Self::Bizum {}
             | Self::OnlineBankingPoland { .. }
             | Self::OnlineBankingSlovakia { .. }
