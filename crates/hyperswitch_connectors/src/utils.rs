@@ -6886,6 +6886,9 @@ impl From<PaymentMethodData> for PaymentMethodDataType {
                 payment_method_data::BankRedirectData::OnlineBankingThailand { .. } => {
                     Self::OnlineBankingThailand
                 }
+                payment_method_data::BankRedirectData::OnlineBankingVietnam { .. } => {
+                    Self::OnlineBankingVietnam
+                }
                 payment_method_data::BankRedirectData::LocalBankRedirect {} => {
                     Self::LocalBankRedirect
                 }

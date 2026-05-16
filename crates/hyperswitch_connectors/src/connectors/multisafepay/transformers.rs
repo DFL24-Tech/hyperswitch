@@ -576,6 +576,7 @@ impl TryFrom<&MultisafepayRouterData<&types::PaymentsAuthorizeRouterData>>
                 | BankRedirectData::Przelewy24 { .. }
                 | BankRedirectData::OnlineBankingFpx { .. }
                 | BankRedirectData::OnlineBankingThailand { .. }
+                | BankRedirectData::OnlineBankingVietnam { .. }
                 | BankRedirectData::LocalBankRedirect {}
                 | BankRedirectData::OpenBanking { .. } => {
                     Err(errors::ConnectorError::NotImplemented(
@@ -648,6 +649,7 @@ impl TryFrom<&MultisafepayRouterData<&types::PaymentsAuthorizeRouterData>>
                 | BankRedirectData::Przelewy24 { .. }
                 | BankRedirectData::OnlineBankingFpx { .. }
                 | BankRedirectData::OnlineBankingThailand { .. }
+                | BankRedirectData::OnlineBankingVietnam { .. }
                 | BankRedirectData::LocalBankRedirect {}
                 | BankRedirectData::OpenBanking { .. } => {
                     Err(errors::ConnectorError::NotImplemented(
@@ -869,6 +871,7 @@ impl TryFrom<&MultisafepayRouterData<&types::PaymentsAuthorizeRouterData>>
                 | BankRedirectData::Przelewy24 { .. }
                 | BankRedirectData::OnlineBankingFpx { .. }
                 | BankRedirectData::OnlineBankingThailand { .. }
+                | BankRedirectData::OnlineBankingVietnam { .. }
                 | BankRedirectData::LocalBankRedirect {}
                 | BankRedirectData::OpenBanking { .. } => None,
             },

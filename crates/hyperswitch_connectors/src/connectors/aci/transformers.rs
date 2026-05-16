@@ -528,6 +528,7 @@ impl
             | BankRedirectData::OnlineBankingPoland { .. }
             | BankRedirectData::OnlineBankingSlovakia { .. }
             | BankRedirectData::OnlineBankingThailand { .. }
+            | BankRedirectData::OnlineBankingVietnam { .. }
             | BankRedirectData::LocalBankRedirect {}
             | BankRedirectData::OpenBankingUk { .. }
             | BankRedirectData::OpenBanking { .. } => Err(errors::ConnectorError::NotImplemented(

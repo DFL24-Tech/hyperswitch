@@ -408,6 +408,7 @@ fn make_bank_redirect_request(
         | BankRedirectData::Trustly { .. }
         | BankRedirectData::OnlineBankingFpx { .. }
         | BankRedirectData::OnlineBankingThailand { .. }
+        | BankRedirectData::OnlineBankingVietnam { .. }
         | BankRedirectData::LocalBankRedirect {}
         | BankRedirectData::OpenBanking { .. } => {
             return Err(errors::ConnectorError::NotImplemented(

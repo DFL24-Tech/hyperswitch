@@ -1260,6 +1260,7 @@ impl TryFrom<&BankRedirectData> for StripePaymentMethodType {
             | BankRedirectData::OnlineBankingPoland { .. }
             | BankRedirectData::OnlineBankingSlovakia { .. }
             | BankRedirectData::OnlineBankingThailand { .. }
+            | BankRedirectData::OnlineBankingVietnam { .. }
             | BankRedirectData::OpenBankingUk { .. }
             | BankRedirectData::Trustly { .. }
             | BankRedirectData::LocalBankRedirect {}
@@ -1912,6 +1913,7 @@ impl TryFrom<&BankRedirectData> for StripePaymentMethodData {
             | BankRedirectData::OnlineBankingPoland { .. }
             | BankRedirectData::OnlineBankingSlovakia { .. }
             | BankRedirectData::OnlineBankingThailand { .. }
+            | BankRedirectData::OnlineBankingVietnam { .. }
             | BankRedirectData::OpenBankingUk { .. }
             | BankRedirectData::Sofort { .. }
             | BankRedirectData::Trustly { .. }
