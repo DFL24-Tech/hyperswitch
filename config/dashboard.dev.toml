@@ -1,5 +1,5 @@
 [default.endpoints]
-api_url="https://api-dev.dfl24.com"
+api_url="https://dashboard-dev.dfl24.com/api"
 sdk_url="https://pay-dev.dfl24.com/HyperLoader.js"
 apple_pay_certificate_url=""
 dss_certificate_url=""
