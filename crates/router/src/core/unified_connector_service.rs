@@ -1090,9 +1090,9 @@ pub fn build_unified_connector_service_payment_method(
                 })
             }
             hyperswitch_domain_models::payment_method_data::BankRedirectData::OnlineBankingVietnam { .. } => {
-                Err(errors::ConnectorError::NotImplemented(
-                    utils::get_unimplemented_payment_method_error_message("unified_connector_service"),
-                ).into())
+                Err(error_stack::report!(UnifiedConnectorServiceError::RequestEncodingFailedWithReason(
+                    "OnlineBankingVietnam is not supported by unified_connector_service".to_string(),
+                )))
             }
         },
         hyperswitch_domain_models::payment_method_data::PaymentMethodData::RealTimePayment(
