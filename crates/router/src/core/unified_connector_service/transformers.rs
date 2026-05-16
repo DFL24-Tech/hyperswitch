@@ -2994,6 +2994,11 @@ impl transformers::ForeignTryFrom<common_enums::PaymentMethodType>
             common_enums::PaymentMethodType::OnlineBankingThailand => {
                 Ok(Self::OnlineBankingThailand)
             }
+            common_enums::PaymentMethodType::OnlineBankingVietnam => {
+                Err(report!(UnifiedConnectorServiceError::RequestEncodingFailedWithReason(
+                    "OnlineBankingVietnam is not supported by unified_connector_service".to_string(),
+                )))
+            }
             common_enums::PaymentMethodType::OnlineBankingCzechRepublic => {
                 Ok(Self::OnlineBankingCzechRepublic)
             }
@@ -4405,6 +4410,7 @@ impl ForeignFrom<common_enums::PaymentMethodType> for payments_grpc::PaymentMeth
             common_enums::PaymentMethodType::MomoAtm => Self::MomoAtm,
             common_enums::PaymentMethodType::Multibanco => Self::Multibanco,
             common_enums::PaymentMethodType::OnlineBankingThailand => Self::OnlineBankingThailand,
+            common_enums::PaymentMethodType::OnlineBankingVietnam => Self::OnlineBankingThailand,
             common_enums::PaymentMethodType::OnlineBankingCzechRepublic => {
                 Self::OnlineBankingCzechRepublic
             }

@@ -1089,6 +1089,11 @@ pub fn build_unified_connector_service_payment_method(
                     payment_method: Some(PaymentMethod::OnlineBankingFpx(online_banking_fpx)),
                 })
             }
+            hyperswitch_domain_models::payment_method_data::BankRedirectData::OnlineBankingVietnam { .. } => {
+                Err(errors::ConnectorError::NotImplemented(
+                    utils::get_unimplemented_payment_method_error_message("unified_connector_service"),
+                ).into())
+            }
         },
         hyperswitch_domain_models::payment_method_data::PaymentMethodData::RealTimePayment(
             bank_transfer_data,
