@@ -2598,6 +2598,7 @@ pub enum PaymentMethodDataType {
     Trustly,
     OnlineBankingFpx,
     OnlineBankingThailand,
+    OnlineBankingVietnam,
     AchBankDebit,
     EftDebitOrder,
     SepaBankDebit,
@@ -2764,6 +2765,9 @@ impl From<domain::payments::PaymentMethodData> for PaymentMethodDataType {
                     }
                     domain::payments::BankRedirectData::OnlineBankingThailand { .. } => {
                         Self::OnlineBankingThailand
+                    }
+                    domain::payments::BankRedirectData::OnlineBankingVietnam { .. } => {
+                        Self::OnlineBankingVietnam
                     }
                     domain::payments::BankRedirectData::LocalBankRedirect { } => {
                         Self::LocalBankRedirect

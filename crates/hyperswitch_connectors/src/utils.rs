@@ -6709,6 +6709,7 @@ pub enum PaymentMethodDataType {
     Trustly,
     OnlineBankingFpx,
     OnlineBankingThailand,
+    OnlineBankingVietnam,
     AchBankDebit,
     SepaBankDebit,
     SepaGuarenteedDebit,

@@ -148,6 +148,7 @@ pub fn validate_payment_method_type_against_payment_method(
                 | api_enums::PaymentMethodType::Blik
                 | api_enums::PaymentMethodType::LocalBankRedirect
                 | api_enums::PaymentMethodType::OnlineBankingThailand
+                | api_enums::PaymentMethodType::OnlineBankingVietnam
                 | api_enums::PaymentMethodType::OnlineBankingCzechRepublic
                 | api_enums::PaymentMethodType::OnlineBankingFinland
                 | api_enums::PaymentMethodType::OnlineBankingFpx
